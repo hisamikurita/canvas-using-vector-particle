@@ -5,3 +5,5 @@
 - ベクトル計算にはそれとわかるようなライブラリを使用する<br>（独自のもの、或いはTHREE.Vector2/Vector3、glMatrix等々）
 - パーティクルの各粒子の制御にはクラスを使用する
 - パーティクルの描画はDOM、Canvas2D、WebGLのいずれでもよい
+
+● <a href="https://hisamikurita.github.io/vector-perticles/dist/">DEMO</a>
