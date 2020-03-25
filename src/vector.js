@@ -31,6 +31,11 @@ export var vector = {
         this._y = Math.sin(angle) * length;
     },
 
+    setFromAngle: function (angle) {
+        this._x = Math.cos(angle);
+        this._y = Math.sin(angle);
+    },
+
     getAngle: function () {
         return Math.atan2(this._y, this._x);
     },
@@ -64,6 +69,11 @@ export var vector = {
     addTo: function (v2) {
         this._x += v2.getX();
         this._y += v2.getY();
+    },
+
+    addFromScalar: function (x, y) {
+        this._x += x;
+        this._y += y;
     },
 
     subtractFrom: function (v2) {

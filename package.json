@@ -1,7 +1,7 @@
 {
   "scripts": {
     "build": "webpack",
-    "start": "webpack --watch"
+    "start": "webpack --development --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.8.7",
