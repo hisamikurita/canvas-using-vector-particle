@@ -9,30 +9,34 @@ window.onload = function () {
         particles = [],
         particleNum = 100;
 
-    class particle {
-        constructor(position, velocity) {
-            this.position = position;
-            this.velocity = velocity;
-        };
-        static create(x, y, speed, direction) {
-            this.position = vector.create(x,y);
-            this.velocity = vector.create(0,0);
-            this.velocity.setLength(speed);
-            this.velocity.setAngle(direction);
-            return this;
-        };
-        static update(){
-            this.position.addTo(this.velocity)
+    class Particle {
+        constructor(x, y, speed, direction){
+            this.position = vector.create(x, y);
+            this.velocity = vector.create(0, 0);
+            this.velocity.setFromAngle(direction);
+            this.speed = speed;
+        }
+        update(){
+            this.position.addFromScalar(
+                this.velocity.getX() * this.speed,
+                this.velocity.getY() * this.speed,
+            );
         }
     }
 
     for (let i = 0; i < particleNum; i++) {
-        particles.push(particle.create(canvas.width / 2, canvas.height / 2, Math.random() * 3 / 1000, Math.random() * Math.PI * 2))
+        particles.push(new Particle(
+            canvas.width / 2,
+            canvas.height / 2,
+            Math.random(),
+            Math.random() * Math.PI * 2
+        ));
     }
     // console.log(perticles)
 
-    update();
-    function update() {
+    render();
+
+    function render() {
         ctx.clearRect(0, 0, width, height);
         for (let i = 0; i < particleNum; i++) {
             var p = particles[i];
@@ -42,6 +46,6 @@ window.onload = function () {
             ctx.fill();
             // console.log(p)
         }
-        requestAnimationFrame(update);
+        requestAnimationFrame(render);
     }
 }
