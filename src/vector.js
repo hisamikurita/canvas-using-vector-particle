@@ -1,95 +1,39 @@
-export var vector = {
-    _x: 1,
-    _y: 0,
-
-    create: function (x, y) {
-        var obj = Object.create(this);
-        obj.setX(x);
-        obj.setY(y);
-        return obj;
-    },
-
-    setX: function (value) {
-        this._x = value;
-    },
-
-    getX: function () {
-        return this._x;
-    },
-
-    setY: function (value) {
-        this._y = value;
-    },
-
-    getY: function () {
-        return this._y;
-    },
-
-    setAngle: function (angle) {
-        var length = this.getLength();
-        this._x = Math.cos(angle) * length;
-        this._y = Math.sin(angle) * length;
-    },
-
-    setFromAngle: function (angle) {
-        this._x = Math.cos(angle);
-        this._y = Math.sin(angle);
-    },
-
-    getAngle: function () {
-        return Math.atan2(this._y, this._x);
-    },
-
-    setLength: function (length) {
-        var angle = this.getAngle();
-        this._x = Math.cos(angle) * length;
-        this._y = Math.sin(angle) * length;
-    },
-
-    getLength: function () {
-        return Math.sqrt(this._x * this._x + this._y * this._y);
-    },
-
-    add: function (v2) {
-        return vector.create(this._x + v2.getX(), this._y + v2.getY());
-    },
-
-    subtract: function (v2) {
-        return vector.create(this._x - v2.getX(), this._y - v2.getY());
-    },
-
-    multiply: function (val) {
-        return vector.create(this._x * val, this._y * val);
-    },
-
-    divide: function (val) {
-        return vector.create(this._x / val, this._y / val);
-    },
-
-    addTo: function (v2) {
-        this._x += v2.getX();
-        this._y += v2.getY();
-    },
-
-    addFromScalar: function (x, y) {
-        this._x += x;
-        this._y += y;
-    },
-
-    subtractFrom: function (v2) {
-        this._x -= v2.getX();
-        this._y -= v2.getY();
-    },
-
-    multiplyBy: function (val) {
-        this._x *= val;
-        this._y *= val;
-    },
-
-    divideBy: function (val) {
-        this._x /= val;
-        this._y /= val;
+//x成分とy成分を持つ二次元ベクトル
+export class Vector {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
     }
-};
-
-// module.exports = vector;
+    //ベクトルのxとyをセットする
+    set(x, y) {
+        this.x = x;
+        this.y = y;
+        return this;
+    }
+    //ベクトルの複製
+    clone() {
+        return new Vector(this.x, this.y);
+    }
+    //ベクトルの足し算 : 渡されたベクトルのxとyを自分に足す
+    add(v) {
+        this.x += v.x;
+        this.y += v.y;
+        return this;
+    }
+    //ベクトルの引き算 : 渡されたベクトルのxとyを自分から引く
+    sub(v) {
+        this.x -= v.x;
+        this.y -= v.y;
+        return this;
+    }
+    //ベクトルの向きを変更する
+    setFromAngle(angle) {
+        this.x = Math.cos(angle);
+        this.y = Math.sin(angle);
+    }
+    //xとyの引数を受けとり、それぞれベクトルxとyに加算する
+    addFromScalar(x, y) {
+        this.x += x;
+        this.y += y;
+    }
+}
