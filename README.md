@@ -6,6 +6,6 @@
 - パーティクルの各粒子の制御にはクラスを使用する
 - パーティクルの描画はDOM、Canvas2D、WebGLのいずれでもよい
 
-● <a href="https://hisamikurita.github.io/vector-perticles/dist/">DEMO</a>
+● <a href="https://hisamikurita.github.io/vector-particles/dist/">DEMO</a>
 
 ![スクリーンショット (141)](https://user-images.githubusercontent.com/47776346/77842545-8104d280-71ce-11ea-9cde-ce5ebde9da76.png)
