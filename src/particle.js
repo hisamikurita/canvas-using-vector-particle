@@ -3,8 +3,8 @@ import { Vector } from './vector'
 
 //Particleクラスを作成する
 export class Particle {
-    //コンストラクターでposition(位置),velocity(進路方向),direction(進路方向),speed(速度),radius(半径),color(色)を定義する
-    constructor(canvas,x, y, speed, direction, radius, color) {
+    //コンストラクターでposition(位置),velocity(進路方向),direction(角度),speed(速度),radius(半径),color(色)を定義する
+    constructor(canvas, x, y, speed, direction, radius, color) {
         this.canvas = canvas;
         //position(位置)プロパティのインスタンスを作成
         this.position = new Vector(x, y);
@@ -33,12 +33,24 @@ export class Particle {
         this.velocity.x = this.velocity.x - (this.velocity.x * this.friction);
         this.velocity.y = this.velocity.y - (this.velocity.y * this.friction);
 
+        // if (this.velocity.x == 0 || this.velocity.y == 0) {
+        //     this.position.x = 100;
+        // }
+
         //canvas外の衝突判定
         if (this.position.x + this.radius > this.canvas.width || this.position.x - this.radius < 0) {
             this.velocity.x *= -1;
-        }
+        };
         if (this.position.y + this.radius > this.canvas.height || this.position.y - this.radius < 0) {
             this.velocity.y *= -1;
-        }
+        };
+
+        //position(位置)がcanvas外に出た時は中央に再配置
+        if (this.position.x > this.canvas.width) {
+            this.position.x = this.canvas.width / 2;
+        };
+        if (this.position.y > this.canvas.height) {
+            this.position.y = this.canvas.height / 2;
+        };
     }
 }

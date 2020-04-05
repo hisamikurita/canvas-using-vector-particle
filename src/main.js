@@ -50,13 +50,7 @@ window.onload = function () {
             ctx.arc(p.position.x, p.position.y, p.radius, 0, Math.PI * 2, false);
             ctx.fillStyle = p.color;
             ctx.fill();
-            //position(位置)がcanvas外に出た時は中央に再配置
-            if (p.position.x > width) {
-                p.position.x = width / 2;
-            }
-            if (p.position.y > height) {
-                p.position.y = height / 2;
-            }
+            // console.log(p.velocity)
         }
         requestAnimationFrame(render);
     }
