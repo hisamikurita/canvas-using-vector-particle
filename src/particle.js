@@ -19,7 +19,7 @@ export class Particle {
         //color(色)プロパティを定義
         this.color = color;
         //摩擦
-        this.friction = .01;
+        this.friction = .05;
     }
     //updateメソッドの作成
     update() {
@@ -30,12 +30,13 @@ export class Particle {
         );
 
         //速度を滑らかに減速させ、最終的に停止させる。
-        this.velocity.x = this.velocity.x - (this.velocity.x * this.friction);
-        this.velocity.y = this.velocity.y - (this.velocity.y * this.friction);
+        this.speed = this.speed - (this.speed * this.friction);
 
-        // if (this.velocity.x == 0 || this.velocity.y == 0) {
-        //     this.position.x = 100;
-        // }
+        //速度が.5以下になった時に再度速度の値を追加して向きを変更する。
+        if (this.speed <= .5) {
+            this.direction = Math.random() * Math.PI * 2;
+            this.speed = Math.random() + 8;
+        }
 
         //canvas外の衝突判定
         if (this.position.x + this.radius > this.canvas.width || this.position.x - this.radius < 0) {
