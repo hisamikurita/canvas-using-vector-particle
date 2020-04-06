@@ -3,7 +3,7 @@ import { Vector } from './vector'
 
 //Particleクラスを作成する
 export class Particle {
-    //コンストラクターでposition(位置),velocity(進路方向),direction(角度),speed(速度),radius(半径),color(色)を定義する
+    //コンストラクターでcanvas,position(位置),velocity(進路方向),direction(角度),speed(速度),radius(半径),color(色)を定義する
     constructor(canvas, x, y, speed, direction, radius, color) {
         this.canvas = canvas;
         //position(位置)プロパティのインスタンスを作成
@@ -19,7 +19,7 @@ export class Particle {
         //color(色)プロパティを定義
         this.color = color;
         //摩擦
-        this.friction = .05;
+        this.friction = .04;
     }
     //updateメソッドの作成
     update() {
@@ -32,9 +32,9 @@ export class Particle {
         //速度を滑らかに減速させ、最終的に停止させる。
         this.speed = this.speed - (this.speed * this.friction);
 
-        //速度が.5以下になった時に再度速度の値を追加して向きを変更する。
-        if (this.speed <= .5) {
-            this.direction = Math.random() * Math.PI * 2;
+        //速度が0.5以下になった時に再度速度の値を追加して向きを変更する。
+        if (this.speed <= .4) {
+            this.velocity.setFromAngle(Math.random() * Math.PI * 2);
             this.speed = Math.random() + 8;
         }
 
