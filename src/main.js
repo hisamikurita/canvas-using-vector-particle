@@ -50,7 +50,6 @@ window.onload = function () {
             ctx.arc(p.position.x, p.position.y, p.radius, 0, Math.PI * 2, false);
             ctx.fillStyle = p.color;
             ctx.fill();
-            // console.log(p.velocity)
         }
         requestAnimationFrame(render);
     }

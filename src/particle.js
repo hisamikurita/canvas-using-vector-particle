@@ -32,7 +32,7 @@ export class Particle {
         //速度を滑らかに減速させ、最終的に停止させる。
         this.speed = this.speed - (this.speed * this.friction);
 
-        //速度が0.5以下になった時に再度速度の値を追加して向きを変更する。
+        //速度が.4以下になった時に再度速度の値を追加して向きを変更する。
         if (this.speed <= .4) {
             this.velocity.setFromAngle(Math.random() * Math.PI * 2);
             this.speed = Math.random() + 8;
