@@ -32,7 +32,7 @@ window.onload = function () {
             canvas,
             canvas.width / 2,
             canvas.height / 2,
-            Math.random() + 8,
+            Math.random() * 10 + 2,
             Math.random() * Math.PI * 2,
             randomIntFromRange(2, 24),
             randomColor(colors),
