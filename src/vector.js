@@ -42,15 +42,8 @@ export class Vector {
     /**
      * ベクトルの向きを変更して速度を乗算する
      */
-    setFromScalarAngle(speed, angle) {
-        this.x = Math.cos(angle) * speed;
-        this.y = Math.sin(angle) * speed;
-    }
-    /**
-     * xとyの引数を受けとり、それぞれベクトルxとyに加算する
-     */
-    addFromScalar(x, y) {
-        this.x += x;
-        this.y += y;
+    setFromScalarAngle(scalar, angle) {
+        this.x = Math.cos(angle) * scalar;
+        this.y = Math.sin(angle) * scalar;
     }
 }

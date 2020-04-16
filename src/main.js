@@ -45,6 +45,7 @@ window.onload = function () {
         ctx.clearRect(0, 0, width, height);
         for (let i = 0; i < particleNum; i++) {
             var p = particles[i];
+            p.accelerate();
             p.update();
             ctx.beginPath();
             ctx.arc(p.position.x, p.position.y, p.radius, 0, Math.PI * 2, false);
