@@ -71,7 +71,9 @@ export class Particle {
         this.acceleration.mult(this.friction);
         this.velocity.sub(this.acceleration);
         if (this.velocity.magnitude() <= 1) {
-            this.velocity.setFromScalarAngle(Math.random() * 10 + 2, Math.random() * Math.PI * 2);
+            this.decelerationforce = new Vector2();
+            this.decelerationforce.setFromScalarAngle(Math.random() * 10 + 2, Math.random() * Math.PI * 2)
+            this.velocity.add(this.decelerationforce);
         }
     }
 }
