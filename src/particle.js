@@ -1,5 +1,5 @@
-//vector.jsを読み込む
-import { Vector } from './vector'
+//vector2.jsを読み込む
+import { Vector2 } from './vector2'
 
 //Particleクラスを作成する
 export class Particle {
@@ -16,19 +16,19 @@ export class Particle {
     constructor(canvas, x, y, scalar, direction, radius, color) {
         this.canvas = canvas;
         //position(位置)プロパティのインスタンスを作成
-        this.position = new Vector(x, y);
+        this.position = new Vector2(x, y);
         //velocity(進路方向+速度)プロパティのインスタンスを作成
-        this.velocity = new Vector();
+        this.velocity = new Vector2();
         //velocityの速度と向きをセットする
         this.velocity.setFromScalarAngle(scalar, direction);
-        //加速度
-        this.acceleration = new Vector();
-        this.acceleration.set(.5, .5);
+        //friction(摩擦)プロパティのインスタンスを作成
+        this.friction = new Vector2();
+        //frictionの値をセットする
+        this.friction.set(.05, .05);
         //radius(半径)プロパティを定義
         this.radius = radius;
         //color(色)プロパティを定義
         this.color = color;
-
     }
     /**
      * updateメソッドの作成
@@ -63,7 +63,15 @@ export class Particle {
             this.position.y = this.canvas.height / 2;
         };
     }
+    /**
+     * accelerateメソッドの作成
+     */
     accelerate() {
-        this.velocity.add(this.velocity * this.acceleration);
+        this.acceleration = this.velocity.clone();
+        this.acceleration.mult(this.friction);
+        this.velocity.sub(this.acceleration);
+        if (this.velocity.magnitude() <= 1) {
+            this.velocity.setFromScalarAngle(Math.random() * 10 + 2, Math.random() * Math.PI * 2);
+        }
     }
 }

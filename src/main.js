@@ -30,8 +30,8 @@ window.onload = function () {
     for (let i = 0; i < particleNum; i++) {
         particles.push(new Particle(
             canvas,
-            canvas.width / 2,
-            canvas.height / 2,
+            Math.random() * canvas.width,
+            Math.random() * canvas.height,
             Math.random() * 10 + 2,
             Math.random() * Math.PI * 2,
             randomIntFromRange(2, 24),
